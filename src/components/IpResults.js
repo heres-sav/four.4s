@@ -22,10 +22,7 @@ const IpResults = ({ data }) => {
         >
           No solutions found within the given constraints
         </h3>)
-      else {
-        console.log(values);
-        setResult(values)
-      }
+      else setResult(values)
     }
     else
       setResult(<h1

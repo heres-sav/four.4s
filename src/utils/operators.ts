@@ -35,7 +35,6 @@ const concatenate = (item1, item2) =>{
 }
 
 export const callBasics = (what, value1, value2) => {
-    // console.log(value1 + ' , ' + value2);
     switch (what) {
         case 'add':
             return {
