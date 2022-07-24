@@ -55,34 +55,49 @@ const firstCall = (set, data) => {
                 newSet.push(callBasics(set[i], data[j], data[k]))
     return newSet
 }
+const combinationCallOf3 = (set, left, right, push) => {
+    let newSet = []
+    for (let i = 0; i < set.length; ++i)
+        for (let j = 0; j < left.length; ++j)
+            for (let k = 0; k < right.length; ++k) {
+                if(!push) newSet.push(callBasics(set[i], left[j], right[k]))
+                else push(callBasics(set[i], left[j], right[k]))
+            }
+    if(!push)
+        return newSet
+}
+const combinationCallOf2 = (set, left, right) => {
+    let newSet = []
+    for (let i = 0; i < set.length; ++i)
+        for (let j = 0; j < left.length; ++j)
+            for (let k = 0; k < right.length; ++k)
+                newSet.push(callBasics(set[i], left[j], right[k]))
+    return newSet
+}
 
 // (((x, x), x), x)
 const recursiveCallAsc = (set, data) => {
     let left = firstCall(set, data)
-    let middleLeft = []
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < left.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                middleLeft.push(callBasics(set[i], left[j], data[k]))
-    
-    for (let i = 0; i < set.length; ++i) {
-        for (let j = 0; j < middleLeft.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                results.push(callBasics(set[i], middleLeft[j], data[k]))
-    }
+    let middleLeft = combinationCallOf3(set, left, data)
+    combinationCallOf3(set, middleLeft, data, (value) => results.push(value))
 }
 // (x, (x, (x, x)))
 const recursiveCallDesc = (set, data) => {
     let right = firstCall(set, data)
-    let middleRight = []
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < right.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                middleRight.push(callBasics(set[i], data[k], right[j]))
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < middleRight.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                results.push(callBasics(set[i], data[k], middleRight[j]))
+    let middleRight = combinationCallOf3(set, data, right)
+    combinationCallOf3(set, data, middleRight, (value) => results.push(value))
+}
+// (x, ((x, x), x))
+const middleToRightToLeft = (set, data) => {
+    let middle = firstCall(set, data)
+    let right = combinationCallOf3(set, data, middle)
+    combinationCallOf3(set, data, right, (value) => results.push(value))
+}
+// ((x, (x, x)), x)
+const middleToLeftToRight = (set, data) => {
+    let middle = firstCall(set, data)
+    let left = combinationCallOf3(set, data, middle)
+    combinationCallOf3(set, left, data, (value) => results.push(value))
 }
 // ((x, x), (x, x))
 // THIS HAS NEEDS TO BE MODIFIED WITH THE NEW APPROACH
@@ -94,37 +109,10 @@ const edgeToMiddle = (set, data) => {
                 return callBasics(set[j], value1, value2)
             })
 }
-// (x, ((x, x), x))
-const middleToRightToLeft = (set, data, k) => {
-    let middle = firstCall(set, data)
-    let right = []
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < middle.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                right.push(callBasics(set[i], middle[j], data[k]))
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < right.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                results.push(callBasics(set[i], data[k], right[j]))
-}
-// ((x, (x, x)), x)
-const middleToLeftToRight = (set, data, k) => {
-    let middle = firstCall(set, data)
-    let left = []
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < middle.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                left.push(callBasics(set[i], data[k], middle[j]))
-    for (let i = 0; i < set.length; ++i)
-        for (let j = 0; j < left.length; ++j)
-            for (let k = 0; k < data.length; ++k)
-                results.push(callBasics(set[i], left[j], data[k]))
-}
 
 const getBrain = () => {
     results = []
     let methods = ['add', 'sub', 'mul', 'div']
-    // return firstCall(methods, dataSet)
     recursiveCallAsc(methods, dataSet)
     recursiveCallDesc(methods, dataSet)
     edgeToMiddle(methods, dataSet)

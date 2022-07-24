@@ -2,8 +2,8 @@
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
+.App-container {
+  background-color: #395B64;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,16 +12,34 @@
 }
 
 .App-detail {
-  color: white;
+  color: #FFF;
+  font-size: 16px;
   margin-bottom: 8px;
+}
+
+.App-result {
+  color: #FFF;
+  font-size: 12px;
+  margin-bottom: 4px;
 }
 
 .App-input {
   text-align: center;
-  color: black;
+  color: #2C3333;
   padding: 20px;
   border-width: 0;
   border-radius: 20px;
   font-size: 26px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.result-container {
+  height: 75vh;
+  width: 95vw;
+  background-color: #2C3333;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 55px;
+  overflow-y: scroll;
 }
