@@ -1,14 +1,7 @@
 import {
-    callBasics,
-    callBasicsAsc,
-    callBasicsDesc
+    callBasics
 } from "./operators.ts"
 
-const data = 4
-const dataObj = {
-    numericResult: 4,
-    formulaString: '4'
-}
 const dataSet = [
     // 4 The Real Number
     {
@@ -124,7 +117,6 @@ const middleToLeftToRight = (set, data, k) => {
 const getBrain = () => {
     results = []
     let methods = ['add', 'sub', 'mul', 'div']
-    // return firstCall(methods, dataSet)
     recursiveCallAsc(methods, dataSet)
     recursiveCallDesc(methods, dataSet)
     edgeToMiddle(methods, dataSet)

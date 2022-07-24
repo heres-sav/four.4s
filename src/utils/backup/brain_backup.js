@@ -4,11 +4,6 @@ import {
     callBasicsDesc
 } from "./operators.ts"
 
-const data = 4
-const dataObj = {
-    numericResult: 4,
-    formulaString: '4'
-}
 const dataSet = [
     // 4 The Real Number
     {
