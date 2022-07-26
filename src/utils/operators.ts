@@ -14,27 +14,12 @@ const multiply = (item1 : [decimal], item2 : [decimal]) => {
 const divide = (item1 : [decimal], item2 : [decimal]) => {
     return ((item1 * 10) / (item2 * 10))
 }
-// Square root
-const squareRoot = (item) => {
-    return Math.sqrt(item)
-}
-// Factorial
-const factorial = (item) => {
-    let result = 1
-    for(let iter = item; iter>1; iter--)
-        result *= iter
-    return result
-}
-// Set decimal, upto one decimal place
-const setDecimal = (item) => {
-    return item/10
-}
 // Concatenating, two items
-const concatenate = (item1, item2) =>{
+const concatenate = (item1 : [decimal], item2 : [decimal]) =>{
     return item1*10 + item2
 }
 
-export const callBasics = (what, value1, value2) => {
+export const callBasics = (what : [string], value1 : [decimal], value2 : [decimal]) => {
     switch (what) {
         case 'add':
             return {
@@ -63,18 +48,5 @@ export const callBasics = (what, value1, value2) => {
         //     }
         default:
             return
-    }
-}
-
-export const callExtras = (what, value) => {
-    switch (what) {
-        case 'sqr':
-            return squareRoot(value)
-        case 'fct':
-            return factorial(value)
-        case 'dec':
-            return setDecimal(value)
-        default:
-            break;
     }
 }

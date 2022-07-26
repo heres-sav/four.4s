@@ -5,6 +5,7 @@ Use exactly four 4's to form every integer from 0 to 50 (may be till 100), using
 ### Till now the limitations of the code
 - Does't use concatenation
 - Doesn't use to the power of
-- The edge to middle method needs correcting
 - No results for ... why?
-- Unsolved numbers less than 100 are 73, 77, 81, 87, 91, 93, 99
+- Unsolved numbers less than 100 are 73, 77, 81, 87, 93, 99
+
+81 = (4/4-4)^4

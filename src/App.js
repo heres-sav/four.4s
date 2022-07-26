@@ -7,15 +7,17 @@ function App() {
   const showAll = false;
   const [resultsUI, setResults] = useState([]);
   const results = getBrain();
-  if(showAll) {
-    let values = []
-    results.forEach(item => {
-      values.push(<h3
-        className="App-detail"
-      >{item.formulaString + ' = ' + item.numericResult}</h3>)
-    })
-    setResults(values)
-  }
+  useEffect(() => {
+    if(showAll) {
+      let values = []
+      results.forEach(item => {
+        values.push(<h3
+          className="App-detail"
+        >{item.formulaString + ' = ' + item.numericResult}</h3>)
+      })
+      setResults(values)
+    }
+  }, [])
   return (
     <div className="App">
       <header className="App-container">
