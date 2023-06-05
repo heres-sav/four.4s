@@ -1,25 +1,35 @@
+import { BasicProps, Operator } from "."
+
 // Addition
-const addItems = (item1 : [decimal], item2 : [decimal]) => {
+const addItems = (item1 : number, item2 : number) => {
     return ((item1 * 10) + (item2 * 10)) / 10
 }
 // Subtraction
-const subtract = (item1 : [decimal], item2 : [decimal]) => {
+const subtract = (item1 : number, item2 : number) => {
     return ((item1 * 10) - (item2 * 10)) / 10
 }
 // Multiplication
-const multiply = (item1 : [decimal], item2 : [decimal]) => {
+const multiply = (item1 : number, item2 : number) => {
     return (item1 * item2)
 }
 // Division
-const divide = (item1 : [decimal], item2 : [decimal]) => {
+const divide = (item1 : number, item2 : number) => {
     return ((item1 * 10) / (item2 * 10))
 }
 // Concatenating, two items
-const concatenate = (item1 : [decimal], item2 : [decimal]) =>{
+const concatenate = (item1 : number, item2 : number) => {
     return item1*10 + item2
 }
 
-export const callBasics = (what : [string], value1 : [decimal], value2 : [decimal]) => {
+export const factorial = (number: number) => {
+    let result: number = 1;
+    for(let i:number = number; i > 1; i--) {
+        result *= i;
+    }
+    return result;
+}
+
+export const callBasics = (what : Operator, value1 : BasicProps, value2 : BasicProps): BasicProps => {
     switch (what) {
         case 'add':
             return {
@@ -47,6 +57,9 @@ export const callBasics = (what : [string], value1 : [decimal], value2 : [decima
         //         formulaString: '(' + value1 + '' + value2 + ')'
         //     }
         default:
-            return
+            return {
+                numericResult: 0,
+                formulaString: ''
+            }
     }
 }

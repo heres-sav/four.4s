@@ -1,45 +1,87 @@
-.App {
-  text-align: center;
+@media only screen
+  and (min-width: 1200px) {
+  #app-container {
+    display: grid;
+    grid-template-columns: 2fr 64px 1fr;
+  }
+  #app-left-container {
+    padding: 40px 70px;
+  }
+  #operators-container {
+    flex-direction: column;
+  }
+  .menu-label-text {
+    font-size: 2.2rem!important;
+  }
+  #title {
+    font-size: 88px;
+    line-height: 88px;
+  }
+  #description {
+    font-size: 22px;
+  }
+  .all-combination-text {
+    font-size: 64px!important;
+    line-height: 64px!important;
+  }
+  .solution-text {
+    font-size: 32px!important;
+  }
 }
-
-.App-container {
-  background-color: #395B64;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@media only screen
+  and (min-width: 968px) 
+  and (max-width: 1200px) {
+  #app-container {
+    display: grid;
+    grid-template-columns: 2fr 64px 1fr;
+  }
+  #app-left-container {
+    padding: 40px 70px;
+  }
+  #operators-container {
+    flex-direction: column;
+  }
+  .menu-label-text {
+    font-size: 2.2rem!important;
+  }
+  #title {
+    font-size: 64px;
+    line-height: 64px;
+  }
+  #description {
+    font-size: 22px;
+  }
+  .all-combination-text {
+    font-size: 32px!important;
+    line-height: 32px!important;
+  }
+  .solution-text {
+    font-size: 24px!important;
+  }
 }
-
-.App-detail {
-  color: #FFF;
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-
-.App-result {
-  color: #FFF;
-  font-size: 12px;
-  margin-bottom: 4px;
-}
-
-.App-input {
-  text-align: center;
-  color: #2C3333;
-  padding: 20px;
-  border-width: 0;
-  border-radius: 20px;
-  font-size: 26px;
-  margin-bottom: 16px;
-}
-
-.result-container {
-  height: 75vh;
-  width: 95vw;
-  background-color: #2C3333;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #fff;
-  border-radius: 55px;
-  overflow-y: scroll;
+@media only screen
+  and (max-width: 968px) {
+  #app-left-container {
+    padding: 12px 30px;
+  }
+  #app-right-container {
+    height: calc(100vh - 295px);
+  }
+  .menu-label-text {
+    font-size: 1.2rem!important;
+  }
+  #title {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  #description {
+    font-size: 12px;
+  }
+  .extras {
+    display: none;
+  }
+  .secondary-component-text {
+    font-size: 18px!important;
+    line-height: 18px!important;
+  }
 }
