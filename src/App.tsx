@@ -186,10 +186,7 @@ function App(): JSX.Element {
             type="number"
             inputProps={{
               style: {
-                width: "120px",
                 textAlign: "right",
-                fontSize: "32px",
-                lineHeight: "0px",
                 color: "var(--bright-white)",
                 border: "1px solid var(--bright-white)",
                 borderRadius: "4px"
@@ -228,9 +225,9 @@ function App(): JSX.Element {
         <Box />
       }
       <Box
-        id="app-right-container"
         p="20px"
         sx={{
+          height: "100%",
           overflowY: "scroll"
         }}>
         {result}

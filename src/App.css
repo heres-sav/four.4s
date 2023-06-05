@@ -27,6 +27,12 @@
   .solution-text {
     font-size: 32px!important;
   }
+  .MuiInputBase-root input {
+    width: 88px;
+    padding: 0px;
+    font-size: 32px;
+    line-height: 0px;
+  }
 }
 @media only screen
   and (min-width: 968px) 
@@ -58,14 +64,21 @@
   .solution-text {
     font-size: 24px!important;
   }
+  .MuiInputBase-root input {
+    width: 88px;
+    padding: 0px;
+    font-size: 32px;
+    line-height: 0px;
+  }
 }
 @media only screen
   and (max-width: 968px) {
+  #app-container {
+    display: flex;
+    flex-direction: column;
+  }
   #app-left-container {
     padding: 12px 30px;
-  }
-  #app-right-container {
-    height: calc(100vh - 295px);
   }
   .menu-label-text {
     font-size: 1.2rem!important;
@@ -83,5 +96,11 @@
   .secondary-component-text {
     font-size: 18px!important;
     line-height: 18px!important;
+  }
+  .MuiInputBase-root input {
+    width: 48px;
+    padding: 0px;
+    font-size: 16px;
+    line-height: 0px;
   }
 }
