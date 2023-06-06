@@ -186,6 +186,7 @@ function App(): JSX.Element {
             type="number"
             inputProps={{
               style: {
+                padding: "0px 4px",
                 textAlign: "right",
                 color: "var(--bright-white)",
                 border: "1px solid var(--bright-white)",
@@ -207,7 +208,7 @@ function App(): JSX.Element {
           justifyContent="space-between">
           <Typography
             className='all-combination-text'
-            fontWeight="100"
+            fontWeight="300"
             color="var(--bright-white)">Combinations Calculated</Typography>
           <Typography
             className='all-combination-text'
