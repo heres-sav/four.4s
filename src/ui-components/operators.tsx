@@ -1,32 +1,15 @@
-import { Box, Typography } from "@mui/material";
-import { useState } from "react";
-import { AllOperator, AllOperatorLabel, DecimalCase, Operator as OperatorType, OperatorCase } from "../utils";
+import { Button, Stack, Typography } from "@mui/material";
+import { DecimalCase, OperatorCase } from "../utils";
 
 const Operator = ({ data, disabled, handleClick }: {
   data: OperatorCase | DecimalCase
   disabled: boolean
   handleClick: () => void
 }) => (
-  <Box
-    width="64px"
-    height="64px"
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    border="1px solid var(--bright-white)"
-    margin="4px 0px"
-    bgcolor={disabled ? "var(--cool-black)" : "var(--highlight)"}
-    sx={{
-      cursor: "pointer",
-      opacity: disabled ? 0.5 : 1
-    }}
+  <Button id="button-op" sx={{ borderRadius: "12px", margin: "12px", border: disabled ? "none" : "1px solid #1976d2" }}
     onClick={handleClick}>
-    <Typography
-      className="menu-label-text"
-      color="var(--bright-white)"
-      fontWeight="800"
-      textAlign="center">{data.label}</Typography>
-  </Box>
+    <Typography variant="h4" className="operator" color="#1976d2" fontWeight="600" textAlign="center">{data.label}</Typography>
+  </Button>
 )
 
 const Operators = ({ operators, decimals, toggleSelect }: {
@@ -34,10 +17,7 @@ const Operators = ({ operators, decimals, toggleSelect }: {
   decimals: Array<DecimalCase>
   toggleSelect: (w: string, v: number) => void
 }) => (
-  <Box
-    id="operators-container"
-    display="flex"
-    bgcolor="var(--primary)">
+  <Stack id="advance-ops" direction="row" justifyContent="center">
     {
       operators.map((item, index: number) =>
         <Operator
@@ -56,7 +36,7 @@ const Operators = ({ operators, decimals, toggleSelect }: {
         />
       )
     }
-  </Box>
+  </Stack>
 )
 
 export default Operators

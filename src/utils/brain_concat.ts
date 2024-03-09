@@ -7,32 +7,38 @@ const dataSet = [
     // 4 The Real Number
     {
         numericResult: 4,
-        formulaString: '4'
+        formulaString: '4',
+        structuralResult: ['4']
     },
     // 4 Factorial
     {
         numericResult: 24,
-        formulaString: '4!'
+        formulaString: '4!',
+        structuralResult: ['4!']
     },
     // Square root of 4
     {
         numericResult: 2,
-        formulaString: '√4'
+        formulaString: '√4',
+        structuralResult: ['√4']
     },
     // Decimal 4
     {
         numericResult: 0.4,
-        formulaString: '.4'
+        formulaString: '.4',
+        structuralResult: ['.4']
     }
 ]
 const dataSet2 = [
     {
         numericResult: 44,
-        formulaString: '44'
+        formulaString: '44',
+        structuralResult: ['44']
     },
     {
         numericResult: 4.4,
-        formulaString: '4.4'
+        formulaString: '4.4',
+        structuralResult: ['4.4']
     }
 ]
 let results: Array<BasicProps> = []

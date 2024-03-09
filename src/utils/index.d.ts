@@ -17,4 +17,5 @@ export interface OperatorCase {
 export interface BasicProps {
   numericResult: number
   formulaString: string
+  structuralResult: Array<string>
 }

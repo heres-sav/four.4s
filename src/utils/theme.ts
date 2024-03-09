@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles'
 
 const darkTheme = createTheme({
   typography: {
-    fontFamily: ['Lato', 'sans-serif'].join(',')
+    fontFamily: ['Outfit', 'sans-serif'].join(',')
   },
   palette: {
     mode: 'dark'
@@ -11,7 +11,7 @@ const darkTheme = createTheme({
 
 const lightTheme = createTheme({
   typography: {
-    fontFamily: ['Lato', 'sans-serif'].join(',')
+    fontFamily: ['Outfit', 'sans-serif'].join(',')
   },
   palette: {
     mode: 'light'

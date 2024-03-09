@@ -32,34 +32,58 @@ export const factorial = (number: number) => {
 export const callBasics = (what : Operator, value1 : BasicProps, value2 : BasicProps): BasicProps => {
     switch (what) {
         case 'add':
+            var result = []
+            result.push('(')
+            result = result.concat(value1.structuralResult)
+            result.push(' + ')
+            result = result.concat(value2.structuralResult)
+            result.push(')')
             return {
                 numericResult: Number(addItems(value1.numericResult, value2.numericResult)),
-                formulaString: '(' + value1.formulaString + ' + ' + value2.formulaString + ')'
+                formulaString: '(' + value1.formulaString + ' + ' + value2.formulaString + ')',
+                structuralResult: result
             }
         case 'sub':
+            var result = []
+            result.push('(')
+            result = result.concat(value1.structuralResult)
+            result.push(' - ')
+            result = result.concat(value2.structuralResult)
+            result.push(')')
             return {
                 numericResult: Number(subtract(value1.numericResult, value2.numericResult)),
-                formulaString: '(' + value1.formulaString + ' - ' + value2.formulaString + ')'
+                formulaString: '(' + value1.formulaString + ' - ' + value2.formulaString + ')',
+                structuralResult: result
             }
         case 'mul':
+            var result = []
+            result.push('(')
+            result = result.concat(value1.structuralResult)
+            result.push(' x ')
+            result = result.concat(value2.structuralResult)
+            result.push(')')
             return {
                 numericResult: Number(multiply(value1.numericResult, value2.numericResult)),
-                formulaString: '(' + value1.formulaString + ' x ' + value2.formulaString + ')'
+                formulaString: '(' + value1.formulaString + ' x ' + value2.formulaString + ')',
+                structuralResult: result
             }
         case 'div':
+            var result = []
+            result.push('(')
+            result = result.concat(value1.structuralResult)
+            result.push(' / ')
+            result = result.concat(value2.structuralResult)
+            result.push(')')
             return {
                 numericResult: Number(divide(value1.numericResult, value2.numericResult)),
-                formulaString: '(' + value1.formulaString + ' / ' + value2.formulaString + ')'
+                formulaString: '(' + value1.formulaString + ' / ' + value2.formulaString + ')',
+                structuralResult: result
             }
-        // case 'cnt':
-        //     return {
-        //         numericResult: concatenate(value1.numericResult, value2.numericResult),
-        //         formulaString: '(' + value1 + '' + value2 + ')'
-        //     }
         default:
             return {
                 numericResult: 0,
-                formulaString: ''
+                formulaString: '',
+                structuralResult: []
             }
     }
 }

@@ -1,106 +1,88 @@
 @media only screen
   and (min-width: 1200px) {
-  #app-container {
-    display: grid;
-    grid-template-columns: 2fr 64px 1fr;
+  h1 {
+    font-size: 6rem !important;
+    line-height: 5rem !important;
   }
-  #app-left-container {
-    padding: 40px 70px;
+  h3 {
+    font-size: 2rem !important;
+    margin: 12px 0px;
   }
-  #operators-container {
-    flex-direction: column;
+  input {
+    font-size: 6rem !important;
   }
-  .menu-label-text {
-    font-size: 2.2rem!important;
+  #container {
+    margin: 22px 70px;
   }
-  #title {
-    font-size: 88px;
-    line-height: 88px;
-  }
-  #description {
-    font-size: 22px;
-  }
-  .all-combination-text {
-    font-size: 64px!important;
-    line-height: 64px!important;
-  }
-  .solution-text {
-    font-size: 32px!important;
-  }
-  .MuiInputBase-root input {
-    width: 88px;
-    padding: 0px;
-    font-size: 32px;
-    line-height: 0px;
+  #input-section .left {
+    width: calc(100% - 340px);
   }
 }
 @media only screen
   and (min-width: 968px) 
   and (max-width: 1200px) {
-  #app-container {
-    display: grid;
-    grid-template-columns: 2fr 64px 1fr;
+  h1 {
+    font-size: 4rem !important;
+    line-height: 4rem !important;
   }
-  #app-left-container {
-    padding: 40px 70px;
+  h3 {
+    font-size: 2rem !important;
+    margin: 12px 0px;
   }
-  #operators-container {
-    flex-direction: column;
+  input {
+    font-size: 6rem !important;
   }
-  .menu-label-text {
-    font-size: 2.2rem!important;
+  #container {
+    margin: 22px 40px;
   }
-  #title {
-    font-size: 64px;
-    line-height: 64px;
-  }
-  #description {
-    font-size: 22px;
-  }
-  .all-combination-text {
-    font-size: 32px!important;
-    line-height: 32px!important;
-  }
-  .solution-text {
-    font-size: 24px!important;
-  }
-  .MuiInputBase-root input {
-    width: 88px;
-    padding: 0px;
-    font-size: 32px;
-    line-height: 0px;
+  #input-section .left {
+    width: calc(100% - 400px);
   }
 }
 @media only screen
   and (max-width: 968px) {
-  #app-container {
-    display: flex;
+  h1.MuiTypography-root {
+    font-size: 2rem !important;
+    line-height: 2.2rem !important;
+  }
+  h3 {
+    margin: 12px 0px;
+  }
+  h3#solution-count {
+    font-size: 2rem;
+  }
+  input {
+    font-size: 3rem !important;
+  }
+  #container {
+    margin: 22px;
+  }
+  #input-section, #answer-section {
     flex-direction: column;
   }
-  #app-left-container {
-    padding: 12px 30px;
+  #input-section {
+    align-items: flex-start;
   }
-  .menu-label-text {
-    font-size: 1.2rem!important;
+  #answer-section .MuiStack-root {
+    height: 90px;
   }
-  #title {
-    font-size: 24px;
-    line-height: 24px;
+  button.MuiIconButton-root {
+    font-size: 2.2rem;
   }
-  #description {
-    font-size: 12px;
+  h4.operator {
+    font-size: 1.6rem;
   }
-  .extras {
-    display: none;
+  #advance-ops {
+    flex-wrap: wrap;
   }
-  .secondary-component-text {
-    font-size: 18px!important;
-    line-height: 18px!important;
+  button#button-op {
+    min-width: 81px;
   }
-  .MuiInputBase-root input {
-    width: 48px;
-    padding: 0px;
-    font-size: 16px;
-    line-height: 0px;
+  #advance-ops button {
+    margin: 6px;
   }
+}
+
+h4 {
+  margin: 0px;
 }

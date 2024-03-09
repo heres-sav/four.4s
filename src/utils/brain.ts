@@ -101,7 +101,8 @@ const getBrain = (operators: Array<OperatorCase | DecimalCase>, main = 4) => {
         // 4 The Real Number
         {
             numericResult: main,
-            formulaString: `${main}`
+            formulaString: `${main}`,
+            structuralResult: [`${main}`]
         },
     ]
     // Now also adding concatenation
@@ -126,7 +127,8 @@ const getBrain = (operators: Array<OperatorCase | DecimalCase>, main = 4) => {
                     // Square root of 4
                     {
                         numericResult: Math.sqrt(main),
-                        formulaString: `√${main}`
+                        formulaString: `√${main}`,
+                        structuralResult: [`√${main}`]
                     }
                 )
                 return
@@ -135,7 +137,8 @@ const getBrain = (operators: Array<OperatorCase | DecimalCase>, main = 4) => {
                     // Decimal 4
                     {
                         numericResult: main/10,
-                        formulaString: `.${main}`
+                        formulaString: `.${main}`,
+                        structuralResult: [`.${main}`]
                     }
                 )
                 return
@@ -144,7 +147,8 @@ const getBrain = (operators: Array<OperatorCase | DecimalCase>, main = 4) => {
                     // 4 Factorial
                     {
                         numericResult: factorial(main),
-                        formulaString: `${main}!`
+                        formulaString: `${main}!`,
+                        structuralResult: [`${main}!`]
                     }
                 )
                 return
@@ -152,7 +156,8 @@ const getBrain = (operators: Array<OperatorCase | DecimalCase>, main = 4) => {
                 dataSet2.push(
                     {
                         numericResult: main*10 + main,
-                        formulaString: `${main}${main}`
+                        formulaString: `${main}${main}`,
+                        structuralResult: [`${main}${main}`]
                     }
                 )
                 return
@@ -160,7 +165,8 @@ const getBrain = (operators: Array<OperatorCase | DecimalCase>, main = 4) => {
                 dataSet2.push(
                     {
                         numericResult: main + main/10,
-                        formulaString: `${main}.${main}`
+                        formulaString: `${main}.${main}`,
+                        structuralResult: [`${main}.${main}`]
                     }
                 )
                 return

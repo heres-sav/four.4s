@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@mui/material/styles'
 import './index.css';
-import App from './App';
+import App from './AppXX';
 import { lightTheme } from './utils/theme';
 import reportWebVitals from './reportWebVitals';
 

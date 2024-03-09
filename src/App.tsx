@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Box, Button, InputBase, List, ListItem, ListItemIcon, ListItemText, Slider, Typography } from '@mui/material';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
-import CircleIcon from '@mui/icons-material/Circle';
-import getBrain from './utils/brain';
-import { BasicProps, DecimalCase, OperatorCase } from './utils';
-import Operators from './components/operators';
-import { DECIMALS, OPERATORS } from './utils/constants';
+import { useEffect, useState } from "react";
+import { Box, Grid, IconButton, InputBase, Stack, Typography } from "@mui/material";
+import Title from "./ui-components/title";
+import Press from "./ui-components/button";
+import LightbulbCircleIcon from '@mui/icons-material/LightbulbCircle';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import getBrain from "./utils/brain";
+import { BasicProps, DecimalCase, OperatorCase } from "./utils";
+import { DECIMALS, OPERATORS } from "./utils/constants";
+import { chooseOne } from "./utils/utils";
+import Operators from "./ui-components/operators";
 import './App.css';
 
 function App(): JSX.Element {
   const [isAdvance, setAdvance] = useState<boolean>(false);
-  const [problem, setProblem] = useState<number>(4)
+  const [problem, setProblem] = useState<number>(4);
   const [userIp, setUserIp] = useState<number>(0);
   const [result, setResult] = useState<Array<JSX.Element>>([]);
+  const [ans, setAns] = useState<JSX.Element>();
   const [results, setResults] = useState<Array<BasicProps>>([]);
   const [operators, setOperators] = useState<Array<OperatorCase>>(OPERATORS);
   const [decimals, setDecimals] = useState<Array<DecimalCase>>(DECIMALS.map((each: DecimalCase) => {
@@ -27,6 +31,8 @@ function App(): JSX.Element {
         return each
     }
   }));
+  const [index, setIndex] = useState<number>(0);
+
   const toggleSelect = (what: string, index: number) => {
     if(what === "decimal") {
       const decimalsClone: Array<DecimalCase> = [...decimals]
@@ -39,12 +45,15 @@ function App(): JSX.Element {
       setOperators(operatorsClone)
     }
   }
+
   useEffect(() => {
+    const __results: Array<BasicProps> = []
     const _results = getBrain([...operators, ...decimals], problem)
     setResult([])
     let values: Array<JSX.Element> = []
     _results.forEach((item: BasicProps) => {
       if(userIp !== null && Number(userIp) === item.numericResult) {
+        __results.push(item)
         values.push(<Typography
           key={item.formulaString}
           className="solution-text"
@@ -56,185 +65,54 @@ function App(): JSX.Element {
       }
     })
     setResult(values)
-    setResults(_results)
+    setResults(__results)
+    setIndex(chooseOne(values.length, index))
   }, [userIp, decimals, operators, problem])
-  return (
-    <Box
-      id="app-container"
-      height="100vh"
-      overflow="hidden">
-      <Box
-        id="app-left-container"
-        bgcolor="var(--primary)">
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="flex-end">
-          <Typography
-            id="title"
-            fontWeight="300"
-            color="var(--bright-white)"
-          >four <strong>{problem}</strong>s</Typography>
-          <Button
-            variant="outlined"
-            startIcon={<LightbulbOutlinedIcon />}
-            color="inherit"
-            onClick={() => {
-              setProblem(4)
-              setOperators(OPERATORS.map(each => {
-                each.enabled = true
-                return each
-              }))
-              setDecimals(DECIMALS.map(each => {
-                each.enabled = true
-                return each
-              }))
-              setAdvance(!isAdvance)
-            }}>
-            { !isAdvance ? "Advance" : "Back 2 Basic"}
-          </Button>
-        </Box>
-        {
-          isAdvance ? <Slider
-            defaultValue={problem}
-            valueLabelDisplay="auto"
-            step={1}
-            marks
-            min={2}
-            max={9}
-            onChange={(e: Event, v: number | number[]) => setProblem(v as number)}
-          /> :
-          <Box height="30px" />
-        }
-        <Typography
-          id='description'
-          fontWeight="300"
-          color="var(--bright-white)">
-          {`Use exactly four ${problem}’s to form every integer from 0 to 50 (may be till 100),
-          using only the operators +, −, ×, /, () (brackets), . (decimal point), √ (square root)
-          and ! (factorial).`}
-        </Typography>
-        <Typography
-          className='extras'
-          fontSize="16px"
-          fontWeight="800"
-          color="var(--bright-white)">Limitations
-        </Typography>
-        <List
-          className='extras'>
-          <ListItem
-            disableGutters>
-            <ListItemIcon>
-              <CircleIcon
-                fontSize='small'
-                htmlColor="var(--bright-white)"
-              />
-            </ListItemIcon>
-            <ListItemText
-              sx={{
-                fontSize: 16,
-                fontWeight: "100",
-                color: "var(--bright-white)"
-              }}
-              primary={`The algorithm considers concatenation of two ${problem}'s as ${problem}${problem}, but
-              not three or four ${problem}'s. As per the problem statement already mentioned the upper constraint
-              is not more than 100, so it will not be efficient if we take three ${problem}'s concatenation (i.e
-              ${problem}${problem}${problem}) into account.`} />
-          </ListItem>
-          <ListItem
-            disableGutters>
-            <ListItemIcon>
-              <CircleIcon
-                fontSize='small'
-                htmlColor="var(--bright-white)"
-              />
-            </ListItemIcon>
-            <ListItemText
-              sx={{
-                color: "var(--bright-white)"
-              }}
-              primary={`The algorithm doesn't consider to the power of ${problem} [eg. the program doesn't use
-              (${problem}${problem}/${problem})^${problem}].
-              \nThat’s why the program doesn’t have the solution for
-              81 [i.e. 81 = (4/4-4)^4]`} />
-          </ListItem>
-          <ListItem
-            disableGutters>
-            <ListItemIcon>
-              <CircleIcon
-                fontSize='small'
-                htmlColor="var(--bright-white)"
-              />
-            </ListItemIcon>
-            <ListItemText
-              sx={{
-                color: "var(--bright-white)"
-              }}
-              primary={`Unsolved numbers less than 100 are 73, 77, 81, 87, 93, 99`} />
-          </ListItem>
-        </List>
-        <Box
-          display="flex"
-          alignItems="flex-end">
-          <Typography
-            className='secondary-component-text'
-            pr="12px"
-            fontSize="32px"
-            fontWeight="300"
-            color="var(--bright-white)">Give all the solutions for</Typography>
-          <InputBase
-            type="number"
-            inputProps={{
-              style: {
-                padding: "0px 4px",
-                textAlign: "right",
-                color: "var(--bright-white)",
-                border: "1px solid var(--bright-white)",
-                borderRadius: "4px"
-              }
-            }}
-            value={userIp}
-            onChange={e => setUserIp(Number(e.target.value))}
-          />
-        </Box>
-        <Typography
-          className='secondary-component-text'
-          fontSize="32px"
-          fontWeight="300"
-          color="var(--bright-white)">Number of solutions found <strong>{result.length}</strong></Typography>
-        <Box
-          display="flex"
-          alignItems="flex-end"
-          justifyContent="space-between">
-          <Typography
-            className='all-combination-text'
-            fontWeight="300"
-            color="var(--bright-white)">Combinations Calculated</Typography>
-          <Typography
-            className='all-combination-text'
-            fontWeight="800"
-            color="var(--bright-white)">{results.length}</Typography>
-        </Box>
+
+  const renderAnswer = () => {
+    return <Stack direction="row" justifyContent="center" alignItems="center" p="0px 12px" width="100%"
+      height="160px">
+      {results[index]?.structuralResult.map((item: string) => {
+        return item.includes('4') ?
+        <Typography p="12px" variant="h1" fontWeight="800" borderRadius="12px" bgcolor="#FEC89A">{item}</Typography>
+        : <Typography variant="h1">{item}</Typography>
+      })}
+    </Stack>
+  }
+  return <Stack id="container" margin="22px 70px">
+    <Stack direction="row" justifyContent="space-between">
+      <Title label="four.4s" />
+      <Press label={ !isAdvance ? "Advance" : "Back to Basic"} icon={<LightbulbCircleIcon />} onClick={() => {
+        setAdvance(!isAdvance)
+      }}/>
+    </Stack>
+    <h4 style={{ fontWeight: "200", paddingTop: "12px" }}>Challenge description:</h4>
+    <h3>Use exactly four 4’s to form every integer from 0 to 50 (may be till 100), using only the operators +, −, ×, /, () (brackets), . (decimal point), (square root) and ! (factorial).</h3>
+    <Stack id="input-section" direction="row" justifyContent="space-between" alignItems="center">
+      <Box className="left">
+        <Typography variant="h1" fontWeight="600" lineHeight="5rem">Enter a number between 0 - 100</Typography>
       </Box>
-      {
-        isAdvance ?
-        <Operators
-          operators={operators}
-          decimals={decimals}
-          toggleSelect={toggleSelect}
-        /> :
-        <Box />
-      }
-      <Box
-        p="20px"
-        sx={{
-          height: "100%",
-          overflowY: "scroll"
-        }}>
-        {result}
-      </Box>
-    </Box>
-  );
+      <InputBase sx={{ width: "224px", padding: "0px 24px", border: "4px solid #D9D9D9",
+      borderRadius: "12px", textAlign: "center" }} onChange={e => setUserIp(Number(e.target.value))}/>
+    </Stack>
+    <Typography id="solution-count" p="12px 0px" variant="h3" fontWeight="200">Solutions found: {results.length}</Typography>
+    <Stack id="answer-section" direction="row" justifyContent="space-between" alignItems="center" margin="32px 0px">
+      {renderAnswer()}
+      <IconButton
+        sx={{ border: "1px solid #1976d2", borderRadius: "12px", fontSize: "6rem" }}
+        onClick={() => setIndex(chooseOne(results.length, index))}>
+        <RefreshIcon fontSize="inherit" htmlColor="#1976d2" />
+      </IconButton>
+    </Stack>
+    {
+      isAdvance &&
+      <Operators
+        operators={operators}
+        decimals={decimals}
+        toggleSelect={toggleSelect}
+      />
+    }
+  </Stack>
 }
 
 export default App;
