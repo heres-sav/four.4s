@@ -14,7 +14,7 @@ import './App.css';
 function App(): JSX.Element {
   const [isAdvance, setAdvance] = useState<boolean>(false);
   const [problem, setProblem] = useState<number>(4);
-  const [userIp, setUserIp] = useState<number>(0);
+  const [userIp, setUserIp] = useState<number>(100);
   const [result, setResult] = useState<Array<JSX.Element>>([]);
   const [ans, setAns] = useState<JSX.Element>();
   const [results, setResults] = useState<Array<BasicProps>>([]);
@@ -93,7 +93,7 @@ function App(): JSX.Element {
         <Typography variant="h1" fontWeight="600" lineHeight="5rem">Enter a number between 0 - 100</Typography>
       </Box>
       <InputBase sx={{ width: "224px", padding: "0px 24px", border: "4px solid #D9D9D9",
-      borderRadius: "12px", textAlign: "center" }} onChange={e => setUserIp(Number(e.target.value))}/>
+      borderRadius: "12px", textAlign: "center" }} value={userIp} onChange={e => setUserIp(Number(e.target.value))}/>
     </Stack>
     <Typography id="solution-count" p="12px 0px" variant="h3" fontWeight="200">Solutions found: {results.length}</Typography>
     <Stack id="answer-section" direction="row" justifyContent="space-between" alignItems="center" margin="32px 0px">
